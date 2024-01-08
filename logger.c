@@ -294,7 +294,7 @@ const char* RESET_NEWLINE = "\n\r\x1b[0m";
  * @param ...           The argument to be printed.
  *
  */
-void ZB_printf(int level, const char *file, const char *function, int line, const char *fmt, ...){
+void LOG(int level, const char *file, const char *function, int line, const char *fmt, ...){
     // Check if the log will be printed.
     if (level >= GetCurrentLogLevel()){
     	// Clear buffer before write to log.
@@ -353,7 +353,7 @@ void ZB_printf(int level, const char *file, const char *function, int line, cons
  * @param[in] file   A pointer to the source file name.
  * @param[in] line   The line number in the source file.
  */
-void ZB_printf(const char *file, int line) {
+void LOG(const char *file, int line) {
     const char separator[1] = "-";  ///< Separator character between file and line
     const int length_of_line = (line == 0 ? 1 : ((int)(log10(fabs(line)) + 1) + (line < 0 ? 1 : 0)));
     const int new_log_length = strlen(GetFileNameFromPath(file)) + length_of_line + sizeof(separator);
