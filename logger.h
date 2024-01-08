@@ -171,7 +171,7 @@ void GetLoggerBuffer(char *buffer);
  * @param ...           The argument to be printed.
  *
  */
-void ZB_printf(int level, const char *file, const char *function, int line, const char *fmt, ...);
+void LOG(int level, const char *file, const char *function, int line, const char *fmt, ...);
 
 /**
  * @brief Macro for simplified logging with log level, file, function, and line information.
@@ -187,7 +187,7 @@ void ZB_printf(int level, const char *file, const char *function, int line, cons
  * @note This macro internally calls the LOG macro and passes the relevant information.
  *       The format and usage are similar to the LOG macro.
  */
-#define LOGGER(level, ...)  ZB_printf(level, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOGGER(level, ...)  LOG(level, __FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
 
 #elif defined(HARD_FAULT_LOGGER_ENABLED)
 
@@ -202,12 +202,12 @@ void ZB_printf(int level, const char *file, const char *function, int line, cons
  * @param[in] file   A pointer to the source file name.
  * @param[in] line   The line number in the source file.
  */
-void ZB_printf(const char *file, int line);
+void LOG(const char *file, int line);
 
 /**
  * @brief This function directs the strings and arguments to be logged.
  */
-#define LOGGER(level, ...)  ZB_printf(__FILE__, __LINE__)
+#define LOGGER(level, ...)  LOG(__FILE__, __LINE__)
 
 #else
 
